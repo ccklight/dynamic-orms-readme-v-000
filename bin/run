@@ -1,4 +1,5 @@
-#!/usr/bin/env ruby 
+#!/usr/bin/env ruby
+require 'pry'
 require 'sqlite3'
 
 require_relative "../lib/song.rb"
@@ -10,4 +11,27 @@ puts "song name: " + song.name
 puts "song album: " + song.album
 song.save
 
+song = Song.new(name: "Windy City", album: "Chicago")
+puts "song name: " + song.name
+puts "song album: " + song.album
+song.save
+
+found_song = Song.find_by_name("Windy City")
+puts 'My favorite song is #{found_song.name}'
 DB[:conn].execute("SELECT * FROM songs")
+
+  song.name = "Happy Birthday"
+  song.name = "Barcelona Love Story"
+  song.name = "Candy Land"
+  song.name = "Merry Christmas"
+
+  Christmas_song = Song.find_by_name("Merry Christmas")
+  puts 'This song called #{Christmas_song} is a holiday favorite'
+  DB[:conn].execute ("SELECT *FROM songs")
+  binding.pry
+
+
+  def self.find_by_name(name)
+    "Happy Birthday"
+  end
+  #binding.pry
